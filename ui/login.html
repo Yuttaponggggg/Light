@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light Siam U - Executive Login</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Prompt:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- Reset & Base Styles --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Prompt', sans-serif;
+            /* พื้นหลังไล่สี Midnight Blue (เหมือนหน้า Main) */
+            background: linear-gradient(135deg, #02111b 0%, #0c263a 50%, #1c3a52 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* --- Glassmorphism Card --- */
+        .login-card {
+            background: rgba(12, 38, 58, 0.6); /* สีพื้นโปร่งแสง */
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.3); /* ขอบทองจางๆ */
+            width: 100%;
+            max-width: 420px;
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* แสงพาดผ่านการ์ด */
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+
+        /* --- Typography --- */
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            /* ไล่สีตัวอักษรทอง */
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: #aab8c2;
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* --- Inputs --- */
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            color: #d4af37;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            margin-left: 5px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c7a89;
+            transition: 0.3s;
+        }
+
+        input[type="text"], 
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 15px 12px 45px; /* เว้นที่ให้ไอคอนด้านซ้าย */
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: #fff;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #d4af37;
+            background: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+        }
+
+        input:focus + i {
+            color: #d4af37; /* ไอคอนเปลี่ยนสีทองเมื่อพิมพ์ */
+        }
+
+        /* --- Buttons --- */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        button, input[type="submit"], input[type="reset"] {
+            padding: 12px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: 'Prompt', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        /* ปุ่ม Login (สีทอง) */
+        .btn-login {
+            background: linear-gradient(45deg, #d4af37, #c5a028);
+            color: white;
+            flex: 2;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+        }
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* ปุ่ม Reset (สีใสขอบขาวบางๆ) */
+        .btn-reset {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #aab8c2;
+            flex: 1;
+        }
+        .btn-reset:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border-color: #fff;
+        }
+
+        /* --- Back Link --- */
+        .back-link {
+            margin-top: 30px;
+            font-size: 0.85rem;
+        }
+        .back-link a {
+            color: #6c7a89;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .back-link a:hover {
+            color: #d4af37;
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h2>Light Siam U</h2>
+        <p class="subtitle">Executive Access Portal</p>
+
+        <form action="../Data/login_check.php" method="post">
+            
+            <div class="input-group">
+                <label for="EmployeeID">รหัสพนักงาน (Employee ID)</label>
+                <div class="input-wrapper">
+                    <input type="text" name="EmployeeID" id="EmployeeID" required 
+                           placeholder="ระบุรหัสของคุณ" autocomplete="off">
+                    <i class="fas fa-user"></i> </div>
+            </div>
+
+            <div class="input-group">
+                <label for="Password">รหัสผ่าน (Password)</label>
+                <div class="input-wrapper">
+                    <input type="password" name="Password" id="Password" required 
+                           placeholder="ระบุรหัสผ่าน">
+                    <i class="fas fa-lock"></i> </div>
+            </div>
+
+            <div class="btn-group">
+                <input type="submit" value="เข้าสู่ระบบ" name="btsave" class="btn-login">
+                <input type="reset" value="ล้างค่า" class="btn-reset">
+            </div>
+
+        </form>
+
+        <div class="back-link">
+            <a href="../Data/report.php">⬅️ กลับไปหน้าแจ้งซ่อม (สำหรับบุคคลทั่วไป)</a>
+        </div>
+    </div>
+
+</body>
+</html>
